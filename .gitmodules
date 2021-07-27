@@ -1,0 +1,3 @@
+[submodule "CAD Sources/template"]
+	path = CAD Sources/template
+	url = git@github.com:Crazy-Ginger/Template-Rocket.git
