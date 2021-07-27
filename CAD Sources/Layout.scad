@@ -20,7 +20,7 @@ acrylic_thick = 2.7;
     shoul_dia = 50;
     shoul_thick = 2.5;
     
-    translate([0, 0, tube_len])
+    translate([0, 0, 624])
     parabolic(nose_len, nose_dia, nose_dia-(2*nose_thick), k, shoul_len, shoul_dia, shoul_dia-(2*shoul_thick), step=0.1);
 }
 //
