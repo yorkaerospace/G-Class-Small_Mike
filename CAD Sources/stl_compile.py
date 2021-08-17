@@ -48,4 +48,5 @@ with open(args.input, "r") as in_file:
             print(f"Running openscad: {out_path}")
             scad_runner = run(["openscad", "-o", out_path, "tmp.scad"], check=True)
             scad_runner.check_returncode()
+os.remove("tmp.scad")
 print("Done")
