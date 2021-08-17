@@ -1,9 +1,10 @@
+// Rocket template imports
 use <template/src/NoseCones.scad>
 use <template/src/Fins.scad>
 use <template/src/BasicComponents.scad>
 
 // units: mm
-$fn = 360;
+$fn = 100;
 
 //out_dia = 56.5;
 
@@ -21,6 +22,7 @@ acrylic_thick = 2.7;
     shoul_thick = 2.5;
     
     // TOGGLE TAG: nose_cone
+    render()
     translate([0, 0, 624])
     parabolic(nose_len, nose_dia, nose_dia-(2*nose_thick), k, shoul_len, shoul_dia, shoul_dia-(2*shoul_thick), step=0.1);
 }
@@ -31,10 +33,22 @@ acrylic_thick = 2.7;
     tube_len = 624;
     tube_dia = 55.5;
     tube_thick = 2.7;
+    
+    fin_root_chord = 80;
+    
     tube_innner = tube_dia - (2 * tube_thick);
     
     // TOGGLE TAG: main_body
-    tube(tube_len, tube_dia, tube_innner, "yellow", "aqua");
+    difference()
+    {
+        tube(tube_len, tube_dia, tube_innner, "yellow", "aqua");
+        
+        translate([-acrylic_thick/2, - tube_dia/2 - 2, -1])
+        cube([acrylic_thick, tube_dia + 5, fin_root_chord + acrylic_thick + 1]);
+        
+        translate([- tube_dia/2 - 2,-acrylic_thick/2, -1])
+        cube([tube_dia + 5, acrylic_thick, fin_root_chord + acrylic_thick + 1]);
+    }
 
     //inner tube
     {
@@ -107,6 +121,7 @@ acrylic_thick = 2.7;
                     translate([0, 0, -acrylic_thick])
                     centreRing(53.8, 30, acrylic_thick);
                 }
+                
                 rotate([0, 0, 45])
                 translate([0, 20.95, -(acrylic_thick * 1.5)])
                 cylinder(h=3 * acrylic_thick, d=2.9);
@@ -126,6 +141,7 @@ acrylic_thick = 2.7;
         cas_thick = 1.6;
         
         // TOGGLE TAG: motor_casing
+        translate([0, 0, -3])
         tube(cas_len, cas_dia, cas_dia-(2*cas_thick), "gray", "red");
     }
     // 
@@ -150,24 +166,24 @@ acrylic_thick = 2.7;
         translate([tube_dia/2, -fin_thick/2, fin_thick])
         rotate([0, 0, -90])
         color("green")
-        deep_trap(root_chord, tip_chord, height, sweep, depth, fin_thick);
+        deep_trap(fin_root_chord, tip_chord, height, sweep, depth, fin_thick);
         
         // TOGGLE TAG: fin_2
         translate([-tube_dia/2, fin_thick/2, fin_thick])
         rotate([0, 0, 90])
         color("green")
-        deep_trap(root_chord, tip_chord, height, sweep, depth, fin_thick);
+        deep_trap(fin_root_chord, tip_chord, height, sweep, depth, fin_thick);
         
         // TOGGLE TAG: fin_3
         translate([-fin_thick/2, -tube_dia/2, fin_thick])
         rotate([0, 0, 180])
         color("green")
-        deep_trap(root_chord, tip_chord, height, sweep, depth, fin_thick);
+        deep_trap(fin_root_chord, tip_chord, height, sweep, depth, fin_thick);
         
         // TOGGLE TAG: fin_4
         translate([fin_thick/2, tube_dia/2, fin_thick])
         rotate([0, 0, 0])
         color("green")
-        deep_trap(root_chord, tip_chord, height, sweep, depth, fin_thick);
+        deep_trap(fin_root_chord, tip_chord, height, sweep, depth, fin_thick);
     }
 }
