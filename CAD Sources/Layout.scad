@@ -136,13 +136,65 @@ acrylic_thick = 2.7;
     
     // motor casing
     {
-        cas_len = 141;
-        cas_dia=28.5;
+        cas_len = 140;
+        cas_dia = 28.5;
         cas_thick = 1.6;
         
+        ret_len = 6.35;
+        ret_dia = 31.75;
+        ret_inn = 21.1;
+        
         // TOGGLE TAG: motor_casing
-        translate([0, 0, -3])
-        tube(cas_len, cas_dia, cas_dia-(2*cas_thick), "gray", "red");
+        union()
+        {
+            translate([0, 0, -3])
+            tube(cas_len, cas_dia, cas_dia-(2*cas_thick), "gray", "firebrick");
+            
+            translate([0, 0, -ret_len - acrylic_thick])
+            tube(ret_len, ret_dia, ret_inn, "gray", "firebrick");
+        }
+    }
+    
+    // motor retainer
+    {
+        lplate_out = 49.7;
+        lplate_inn = 31.9;
+        lplate_thick = 1.15;
+        
+        rube_len = 9.5;
+        rube_out = 34.5;
+        rube_inn = 31.9;
+        
+        uplate_out = 34.5;
+        uplate_inn = 25.6;
+        uplate_thick = 1;
+        
+        // TOGGLE TAG: motor_retainer
+        color("red")
+        translate([0, 0, -lplate_thick - acrylic_thick-0.1])
+        union()
+        {
+            // Make screw holes
+            difference()
+            {
+                centreRing(lplate_out, lplate_inn, lplate_thick);
+                
+                rotate([0, 0, 45])
+                translate([0, 20.95, -(acrylic_thick * 1.5)])
+                cylinder(h=3 * acrylic_thick, d=2.9);
+                
+                rotate([0, 0, -135])
+                translate([0, 20.95, -(acrylic_thick * 1.5)])
+                cylinder(h=3 * acrylic_thick, d=2.9);
+            }
+                
+            translate([0, 0, -rube_len])
+            tube(rube_len + lplate_thick, rube_out, rube_inn);
+
+            translate([0, 0, -rube_len - uplate_thick])
+            centreRing(uplate_out, uplate_inn, uplate_thick);
+            
+        }
     }
     // 
     
