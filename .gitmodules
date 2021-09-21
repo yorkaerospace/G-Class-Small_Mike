@@ -1,6 +1,6 @@
-[submodule "CAD Sources/template"]
-	path = CAD Sources/template
-	url = git@github.com:Crazy-Ginger/Template-Rocket.git
 [submodule "CAD Sources/nutsnbolts"]
 	path = CAD Sources/nutsnbolts
 	url = git@github.com:JohK/nutsnbolts.git
+[submodule "Theoretical CAD/template"]
+	path = Theoretical CAD/template
+	url = git@github.com:Crazy-Ginger/Template-Rocket.git
