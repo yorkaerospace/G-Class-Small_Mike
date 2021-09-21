@@ -1,6 +1,11 @@
 # ARP21
 
-Actually the final final rocket this time. Pinky promise. 
+Actually the final final rocket this time. 
+
+Achieved: 
+524m Apogee
+100m/s top speed
+
 
 
 ## Rockets and Things Links
